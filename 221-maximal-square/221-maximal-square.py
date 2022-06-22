@@ -6,7 +6,7 @@ class Solution:
         rows = len(matrix)
         cols = len(matrix[0])
         
-        dp = [[0]*(cols+1) for _ in range(rows+1)]
+        dp = [[0]*(cols) for _ in range(rows)]
         max_side = 0
         for i in range(rows):
             dp[i][0]=int(matrix[i][0])
