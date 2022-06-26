@@ -6,11 +6,11 @@ class Solution:
         max_len = 0
 
         while end <= len(nums) - 1:  # python offset -1 for index
-            if nums[end] == 0:
+            if nums[end] == 1:
                 count_zeros += 1
 
-            while count_zeros > 1:
-                if nums[start] == 0:
+            while end-start+1-count_zeros > 1:
+                if nums[start] == 1:
                     count_zeros -= 1
                 start += 1
 
