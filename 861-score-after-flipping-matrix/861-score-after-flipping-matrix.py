@@ -22,11 +22,10 @@ class Solution:
 
                     else: 
                         grid[x][y] = 1
-
-        result = 0
-        for i in range(row):
-            for j in range(col):
-                if grid[i][j] == 1:
-                    result += 2**(col-j-1)
-
-        return result
+        sum=0
+        for i in grid:
+            dig=0
+            for j in i:
+                dig=dig*10+j
+            sum+=int(str(dig),2)
+        return (sum)
