@@ -1,12 +1,15 @@
 class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
-        res = set()
-        def dfs(path, t):
-            if path not in res:
-                if path:
-                    res.add(path)
-                for i in range(len(t)):
-                    dfs(path+t[i], t[:i] + t[i+1:])
-                
-        dfs('', tiles)
-        return len(res)
+        def backtrack(output,tiles):
+            count = 0
+            
+            for i in range(len(tiles)):
+                if i == 0 or tiles[i-1] != tiles[i]:
+                    output.append(tiles[i])
+                    count += 1
+                    count += backtrack(output, tiles[:i] + tiles[i+1:])
+                    output.pop()
+
+            return count
+        
+        return backtrack([],sorted(tiles))
