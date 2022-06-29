@@ -16,6 +16,7 @@ class Solution:
     
     def dfs(self, node, m):
         for neigh in node.neighbors:
+            #first create all node recursively then link them lastly
             if neigh not in m:
                 m[neigh] = Node(neigh.val)
                 self.dfs(neigh, m)
