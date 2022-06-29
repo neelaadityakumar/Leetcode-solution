@@ -21,7 +21,7 @@ class Solution:
             if node==dst:  # reach the destination # as priority_queue is a minHeap so this cost is the most minimum cost.
                 return cost
             
-            best_visited[node] = steps # Update steps
+            best_visited[node] = steps+1 # Update steps
 
             for neighb, weight in adj_list[node]:
                 heapq.heappush(prior_queue, (cost + weight, steps + 1, neighb))
