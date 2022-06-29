@@ -2,8 +2,7 @@ class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
         def dfs(cur, path, res):
             
-            new_path = list(path)
-            new_path.append(cur)
+            new_path = path+[cur]
             
             if cur == len(graph)-1:
                 res.append(new_path)
