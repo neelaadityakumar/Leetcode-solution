@@ -14,6 +14,6 @@ class Solution:
             if curr == end:  #if its the end then we can return True
                 return True
             elif curr in d and not visited[curr]: #else if it is not the end then check whether its visited or not
-                q.extend(d[curr])  #add the adjacent vertices of the current node to the queue
+                q+=d[curr]  #add the adjacent vertices of the current node to the queue
             visited[curr] = True  #mark this curr vertex as visited = True, so that we dont visit this vertex again
         return False  #return False if the queue gets empty and we dont reach the end
