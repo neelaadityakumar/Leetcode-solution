@@ -6,8 +6,8 @@ class Solution:
 		# just in case graph is disconnected
         for node in range(len(graph)):
             if node not in color:
-                color[node] = 0
-                #visiting with 0 color initially
+                color[node] = 1
+                #visiting with 0 color initially because it is initial or disconnected
                 q.append(node)
                 while len(q):
                     curr = q.pop(0)
