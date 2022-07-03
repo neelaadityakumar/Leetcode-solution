@@ -1,22 +1,27 @@
 class Solution:
     def countServers(self, grid: List[List[int]]) -> int:
-        def solve(r,c):
-            grid[r][c]=-1
-            nonlocal ans
-            ans+=1
-            for i in range(len(grid)):
-                if grid[i][c]==1:
-                    solve(i, c)
-
-            for j in range(len(grid[0])):
-                if grid[r][j]==1:
-                    solve(r, j)
-        count=0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j]==1:
-                    ans=0
-                    solve(i,j)
-                    if ans>1:
-                        count+=ans
+        seen = set()
+        number_of_servers = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                potential_servers = 0 
+                if grid[row][col] == 1 and (row, col) not in seen:
+                    seen.add((row, col))
+                    potential_servers = self.four_directional_search(grid, row, col, seen)
+                    if potential_servers > 1:
+                        number_of_servers += potential_servers 
+        return number_of_servers
+		
+    def four_directional_search(self, grid, row, col, seen):
+        count = 1
+        for new_row in range(len(grid)):
+            if (new_row, col) not in seen:
+                seen.add((new_row, col))
+                if grid[new_row][col] == 1:
+                    count += self.four_directional_search(grid, new_row, col, seen)
+        for new_col in range(len(grid[0])):
+            if (row, new_col) not in seen:
+                seen.add((row, new_col))
+                if grid[row][new_col] == 1:
+                    count += self.four_directional_search(grid, row, new_col, seen)  
         return count
