@@ -6,19 +6,19 @@ class Solution:
                 flag = False
             
             if i-1>=0 and grid2[i-1][j]==1:
-                grid2[i-1][j] = 2
+                grid2[i-1][j] = 0
                 flag = isIsland(i-1,j) and flag and grid1[i-1][j]
                     
             if i+1<n and grid2[i+1][j]==1:
-                grid2[i+1][j] = 2
+                grid2[i+1][j] = 0
                 flag = isIsland(i+1,j) and flag and grid1[i+1][j]
             
             if j-1>=0 and grid2[i][j-1]==1:
-                grid2[i][j-1] = 2
+                grid2[i][j-1] = 0
                 flag = isIsland(i,j-1) and flag and grid1[i][j-1]
             
             if j+1<m and grid2[i][j+1]==1:
-                grid2[i][j+1]=2
+                grid2[i][j+1]=0
                 flag = isIsland(i,j+1) and flag and grid1[i][j+1]
             return flag
             
@@ -29,7 +29,7 @@ class Solution:
         for i in range(n):
             for j in range(m):
                 if grid2[i][j]==1:
-                    grid2[i][j] = 2
+                    grid2[i][j] = 0
                     if isIsland(i, j):
                         count += 1
         return count
