@@ -13,8 +13,6 @@ class Solution:
             dist[src]=0
             while minHeap:
                 d, u = heapq.heappop(minHeap)
-                if dist[u]<d: continue  # if distance is not latest , this avoids usage of visited array 
-                print(d, u, ' d, u ')
                 for (v, cost) in g[u]:
                     if dist[v]>cost+dist[u]:
                         dist[v]=cost+dist[u]
