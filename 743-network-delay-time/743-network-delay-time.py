@@ -6,6 +6,7 @@ class Solution:
         while q:
             time, node = q.popleft()
             if time < t[node]:
+                
                 t[node] = time
                 for v, w in graph[node]:
                     q.append((time + w, v))
