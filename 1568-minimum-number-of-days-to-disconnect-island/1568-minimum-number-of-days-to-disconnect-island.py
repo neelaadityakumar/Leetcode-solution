@@ -12,8 +12,8 @@ class Solution:
         vis, low, time, res = {root}, {}, {}, []
         
         # find whether articulation points are present in the matrix
-        def articulation_points(curr, parent): 
-            low[curr] = time[curr] = len(vis)
+        def articulation_points(curr, parent,t): 
+            low[curr] = time[curr] = t
             children = 0
             i, j = curr
             
@@ -23,7 +23,7 @@ class Solution:
                 if 0<=x<len(grid) and 0<=y<len(grid[0]) and grid[x][y]:
                     if (x, y) not in vis:
                         vis.add((x,y))
-                        articulation_points((x,y), curr)
+                        articulation_points((x,y), curr,t+1)
                         low[curr] = min(low[curr], low[(x, y)])
                         children += 1
                         if low[(x, y)] >= time[(curr)] and parent!=(-1, -1):
@@ -34,7 +34,7 @@ class Solution:
                 if parent == (-1, -1) and children > 1:
                     res.append([x, y])
 
-        articulation_points(root, (-1, -1))
+        articulation_points(root, (-1, -1),1)
 
         if len(vis) != cnt: # if the matrix is disconnected beforehand
             return 0
