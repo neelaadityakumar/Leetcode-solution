@@ -26,5 +26,8 @@ class Solution:
                 continue
             count1=max(0,maxMoves-dist[u])
             count2=max(0,maxMoves-dist[v])
+             # At the end, each edge (u, v, w) can be used with a maximum
+        # of w new nodes: a max of used[u, v] nodes from one side,
+        # and used[v, u] nodes from the other.
             ans+=min(count1+count2,weight)
         return ans
