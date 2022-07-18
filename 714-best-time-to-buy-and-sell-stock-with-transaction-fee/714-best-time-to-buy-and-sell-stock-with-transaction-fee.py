@@ -5,16 +5,17 @@ class Solution:
         dp=[[-1]*2 for i in range(n)]
         n = len(prices)
         
-        @lru_cache(None)
-        def dpfind(i, needBuy):
+        def profit(i, needBuy):
             if i == n:
                 return 0
-            
-            ans = dpfind(i+1, needBuy)  # Skip
-            if needBuy:
-                ans = max(ans, dpfind(i+1, False) - prices[i])
-            else:
-                ans = max(ans, dpfind(i+1, True) + prices[i] - fee)
-            return ans
+            if dp[i][needBuy]==-1:
+                ans = profit(i+1, needBuy)  # Skip
+                if needBuy:
+                    ans = max(ans, profit(i+1, 0) - prices[i])
+                    dp[i][1]=ans
+                else:
+                    ans = max(ans, profit(i+1, 1) + prices[i] - fee)
+                    dp[i][0]=ans
+            return dp[i][needBuy]
                 
-        return dpfind(0, True)
+        return profit(0, 1)
