@@ -12,4 +12,5 @@ class Solution(object):
                 if last == 0: score = 1
                 else: score = last * 2
                 stack[-1] += score
+        
         return stack[0]
