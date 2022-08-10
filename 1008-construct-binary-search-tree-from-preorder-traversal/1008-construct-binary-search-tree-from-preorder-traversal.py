@@ -10,11 +10,11 @@ class Solution(object):
         :type preorder: List[int]
         :rtype: TreeNode
         """
-        return self.buildTree(A[::-1], float('inf'))
+        return self.buildTree(A[::-1], float('inf'),float('-inf'))
 
-    def buildTree(self, A, bound):
-        if not A or A[-1] > bound: return None
+    def buildTree(self, A, lbound,rbound):
+        if not A or A[-1] > lbound or A[-1] < rbound: return None
         node = TreeNode(A.pop())
-        node.left = self.buildTree(A, node.val)
-        node.right = self.buildTree(A, bound)
+        node.left = self.buildTree(A, node.val,rbound)
+        node.right = self.buildTree(A, lbound,node.val)
         return node
