@@ -9,18 +9,12 @@ class Solution:
             return dp[index][target]
                       
                       
-        target-=arr[index]
-        if self.subset_sum_part2(arr,target,index+1,dp)==True:
-            dp[index][target]=True
-            return True
-        target+=arr[index]
+        res=self.subset_sum_part2(arr,target-arr[index],index+1,dp) or self.subset_sum_part2(arr,target,index+1,dp)
+        dp[index][target]=res
 
-        if self.subset_sum_part2(arr,target,index+1,dp)==True:
-            dp[index][target]=True
-            return True
+       
     
-        dp[index][target]=False
-        return False
+        return res
 
     def canPartition(self, nums):
         sum=0
